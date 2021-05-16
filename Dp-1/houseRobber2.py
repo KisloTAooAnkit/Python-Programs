@@ -38,7 +38,7 @@ def caller(arr,n):
     return(max(ans1,ans2))
 
     
-a=[1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+a=[1, 2, 3, 4, 5, 7, 8, 9, 10, 11]
 
 
 print(caller(a,len(a)))

@@ -81,8 +81,8 @@ def editDistanceDP(s1,s2,m,n,dp):
         return ans
     
     
-a= "abcedssdsdsdsd"
-b= "asdebsas"
+a= "abcedshghchgcggfgrdgvjbkjbhjgfvgsdsdsdsd"
+b= "asdebsahgghvghcgfdhfgrs"
 print(a,b)
 
 def caller(a,b):
