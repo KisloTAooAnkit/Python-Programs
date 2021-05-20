@@ -1,0 +1,23 @@
+bbbab , babbb  1+3 = 4
+    bbab , abbb max(3,2) = 3
+
+        bbab , bbb 1+ 2 = 3
+            bab , bb 1 + 1 =2 
+
+                ab , b max(1,0) = 1
+                    ab , "" = 0
+
+                    b , b = 1
+
+        bab , abbb max(2,2) = 2
+            bab , bbb 1+1 =2 
+                ab , bb max(1,1) =1 
+                    ab , b  = 1
+
+                    b , bb  1+ 0 = 1
+
+                        ",b = 0 
+
+            ab , abbb  1+1 = 2
+                b,bbb 1 + 0 = 1
+                    " ,bbb = 0
