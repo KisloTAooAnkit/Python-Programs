@@ -1,4 +1,6 @@
+#https://leetcode.com/problems/jump-game-ii/
 
+#piche se dp lagaya
 def jumpDP(nums):
     n = len(nums)
     dp = [0 for i in range(n)]
@@ -15,7 +17,7 @@ def jumpDP(nums):
     print(nums)
     print(dp[0])
 
-
+#wasnt able to understand this logic 
 def jumpsOptimizedGreedy(nums):
     n=len(nums)
     jumpcount = 0
