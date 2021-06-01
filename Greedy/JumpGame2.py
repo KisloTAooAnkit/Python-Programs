@@ -41,40 +41,38 @@ def jumpsOptimizedGreedy(nums):
 
     
 def jumpGame_2(arr):
-    
-    if(len(arr)<=1):
-        return len(arr)
+    n= len(arr)
+
+    if(n<=1):
+        return 0
+
+    start = 0
+    end = 0
+    i =0 
+    totalJumps = 0
+
+
+    while(i<n-1):
+        start = i+1
+        end = arr[i] + i if arr[i] + i < n-1 else n-1
+        farthest_index = 0
+        farthest_index_val = 0
+        for j in range(start,end+1):
+            val = j + arr[j] 
+            val = val if val<n-1 else n-1
+            if(val>=farthest_index_val):
+                farthest_index_val = val
+                farthest_index = j
+                
         
+        i = farthest_index
+        totalJumps +=1
     
-    startPointer = 0
-    endPointer = arr[0]
-    farthest_idx=0
-    jumpval = 1
-    
-    n = len(arr)-1
-    
-    while(startPointer<n):
-        for i in range(startPointer+1,endPointer+1):
-            val = i + arr[i]
-            if(val>farthest_idx):
-                farthest_idx = val if val<n else n
-        jumpval+=1
-        startPointer = farthest_idx 
-        endPointer = arr[farthest_idx] + farthest_idx
-    
-    return jumpval
-        
-        
+    return totalJumps
 
 
-
-
-
-
-
-
-nums = [2,3,2,3,4,2,7,1,8]
-print(jumpGame_2(nums))
+nums1 = [2,3,1,4,8]
+print(jumpGame_2(nums1))
 
 
 
