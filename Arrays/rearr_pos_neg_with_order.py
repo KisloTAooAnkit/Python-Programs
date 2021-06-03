@@ -6,6 +6,7 @@ chalu karenge thabhi og array mein
 2: phir right part ke sare -ve ko bharo
 3: phir left part ke sare +ve ko bharo
 4: phir right part ke sare +ve ko bharo
+TC = O(nlogn) SC = O(n)
 '''
 
 

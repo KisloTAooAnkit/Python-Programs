@@ -39,7 +39,7 @@ def jumpsOptimizedGreedy(nums):
     return jumpcount
 
 
-    
+#my submission (leetcode)
 def jumpGame_2(arr):
     n= len(arr)
 
