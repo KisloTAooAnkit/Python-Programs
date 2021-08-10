@@ -6,9 +6,9 @@ def findingUsersActiveMinutes(logs, k):
         id = i[0]
         time = i[1]
         if(id in hashtable):
-            hashtable[i] +=1
+            hashtable[id] +=1
         else:
-            hashtable[i] =1
+            hashtable[id] =1
             
     for key in hashtable:
         val = hashtable[key]
