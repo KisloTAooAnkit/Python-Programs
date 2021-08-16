@@ -1,20 +1,22 @@
 
-def helper(arr,n,ans):
+def helper(arr,n,ans,temp):
     if(n==0):
-        ans.append([])
-        return ans
+        ans.append(temp)
+        return 
     
-    ans.append(arr[0])
-    helper(arr[1:],n-1,ans)
-    ans.pop(-1)
-    helper(arr[1:],n-1,ans)
-    
-    return ans
+    temp.append(arr[0])
+    print(temp)
+    helper(arr[1:],n-1,ans,temp[:])
+    temp.pop(-1)
+    helper(arr[1:],n-1,ans,temp[:])
+    return 
+
 
 def subsets(nums):
     ans = []
-    return helper(nums,len(nums),ans)
+    helper(nums,len(nums),ans,[])
+    print(ans)
 
 
-arr = [1,2,3]
-print(subsets(arr))
+arr = []
+subsets(arr)
