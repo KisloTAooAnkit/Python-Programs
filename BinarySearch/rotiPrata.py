@@ -1,0 +1,2 @@
+def rotiPrata(arr,target):
+    
