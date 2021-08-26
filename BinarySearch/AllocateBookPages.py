@@ -1,30 +1,40 @@
-import sys
-def check(arr,target,childCount,n):
-    
-    maxsum = 0
-    runningsum = 0
-    for i in range(n-1,target-2,-1):
-        runningsum +=arr[i]
-        if(runningsum>target):
-            maxsum = max(runningsum,maxsum)
-            runningsum = 0
-            target-=1
-    
-    return maxsum
+def isValid(arr,targetPages,childrenAvailable,n):
+    requiredStudents=1
+    sln = 0
+    for i in range(n):
+        if(arr[i]>targetPages):
+            return False
+        if(sln + arr[i]>targetPages):
+            requiredStudents +=1
+            sln = arr[i]
+        else:
+            sln += arr[i]
+        if requiredStudents>childrenAvailable:
+            return False
+    return True
 
 
-def allocatePages(arr,childCount):
-    end = sum(arr)
-    start = 0
-    ans = sys.maxsize
+
+
+def findPages(arr,childrenCount):
     n = len(arr)
+    start = 0
+    end = sum(arr)
+    ans = 0
+    if(n<childrenCount):
+        return -1
     while(start<=end):
-        mid = start + (end-start)//2
-        val = check(arr,mid,childCount,n)
-        ans = min(ans,val)
-        if(mid>arr[-1]):
+        mid =  start + (end-start)//2
+        if(isValid(arr,mid,childrenCount,n)):
+            ans = mid
             end = mid-1
         else:
-            start = mid+1
-    
+            start = mid +1
     return ans
+
+arr = [1,2,3,1,1]
+m = 4
+print(findPages(arr,m))
+
+            
+
