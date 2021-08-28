@@ -21,5 +21,24 @@ def productExceptSelf(arr):
             ans[i] = totalprod // arr[i]
     return ans
 
+def productExceptSelfWithoutDiv(arr):
+    n = len(arr)
+    ans = [1]* n
+    ans1 = [1]*n 
+    for i in range(1,n):
+        ans[i] = arr[i-1]*ans[i-1]
+    for i in range(n-2,-1,-1):
+        ans1[i] = arr[i+1] * ans1[i+1]
+    
+    for i in range(0,n):
+        ans[i] = ans[i]*ans1[i]
+    
+    return ans
+
+
+
+
 arr = [-1,1,0,-3,3]
+arr1 = [10, 3, 5, 6, 2]
 print(productExceptSelf(arr))
+print(productExceptSelfWithoutDiv(arr))
