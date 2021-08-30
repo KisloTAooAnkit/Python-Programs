@@ -27,7 +27,7 @@ def findMedianSortedArr(arr1,arr2):
         """pick last two elements from left sides of cuts left1,left2"""
         
         left1 = -sys.maxsize if cut1 ==0 else arr1[cut1-1]
-        left2 = -sys.maxsize if cut2 ==0 else arr1[cut2-1]
+        left2 = -sys.maxsize if cut2 ==0 else arr2[cut2-1]
         
         """pick first two elements from right side of cuts right1,right2"""
         
@@ -60,4 +60,8 @@ def findMedianSortedArr(arr1,arr2):
         
     return 0
 
+
+a = [1,3]
+b = [2]
+print(findMedianSortedArr(a,b))
 
