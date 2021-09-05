@@ -17,7 +17,7 @@ def findMedianSortedArr(arr1,arr2):
         cut1 = low + (high-low)//2
         #collect remaining elements from arr2 for statisfying number of elements in first half of merged arr
 
-        cut2 = (n1+n2)//2 - cut1
+        cut2 = (n1+n2+1)//2 - cut1
 
         """identifying if the cuts are valid -> agar ham cuts ke left sides ko merge kare aur ight side ko merge kar
         to continous sorted array milni chahiye"""
