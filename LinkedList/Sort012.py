@@ -36,12 +36,23 @@ def sort012(head):
             lastTwo.next = curr
             lastTwo = curr
         curr = curr.next
+    if lastTwo:
+        lastTwo.next = None
 
-    head = firstZero
-    lastZero.next = firstOne
-    lastOne.next = firstTwo 
-    lastTwo.next = None
-    return head
+    if  firstZero:
+        if not firstOne:
+            lastZero.next = firstTwo
+        else:
+            lastZero.next = firstOne
+            lastOne.next = firstTwo
+        return firstZero
+    
+    if firstOne:
+        lastOne.next = firstTwo
+        return firstOne
+
+    if firstTwo:
+        return firstTwo
 
 a = [2,2,0,1]
 n = len(a)
