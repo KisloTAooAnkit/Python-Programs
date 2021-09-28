@@ -22,7 +22,7 @@ def findMin(arr):
         elif(arr[mid]>arr[end]):
             start = mid+1
 
-arr = [4,5,6,7,0,1,2]
+arr = [3,3,3,1]
 
 print(findMin(arr))
     

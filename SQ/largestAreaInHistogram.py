@@ -28,5 +28,5 @@ def largestRectangleArea(arr):
 
 
 
-a = [6,1,3]
+a = [1,1,1]
 print(largestRectangleArea(a))
