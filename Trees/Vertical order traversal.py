@@ -56,9 +56,58 @@ def verticalTraversal(root):
         rightw = max(rightw,pair[1])
 
     ans = [[]]*(-leftw+rightw+1) 
-    for pair,arr in sorted(dic.items()):
+    for pair in dic:
         idx = pair[1] - leftw
         ans[idx] = ans[idx] +dic[pair]
-    return ans
+    return ans  
 
 """---------------------------------------------------------------------------------------------------------------------"""
+from collections import deque
+class QueueItem:
+    def __init__(self,node,x,y) -> None:
+        self.node = node
+        self.x = x
+        self.y = y
+    def __lt__(self,other):
+        return self.node.val < other.node.val
+
+def BFS(node):
+    item = QueueItem(node,0,0)
+    dic = dict()
+    q = deque(item)
+    while(q):
+        item = q.popleft()
+        pair = (item.x,item.y)
+        if pair in dic:
+            dic[pair].append(item.node.val)
+        else:
+            dic[pair] = item.node.val
+
+        if item.node.left:
+            x = pair[0] + 1
+            y = pair[1] - 1
+            q.append(QueueItem(item.node.left,x,y))
+
+        if item.node.right:
+            x = pair[0] + 1
+            y = pair[1] + 1
+            q.append(QueueItem(item.node.left,x,y))
+    
+    leftw = sys.maxsize
+    rightw = -sys.maxsize
+    for key in dic:
+        dic[key].sort()
+        leftw = min(key[1],leftw)
+
+        rightw = max(key[1],rightw)
+    
+    res = [[] for _ in range(leftw+rightw+1)]
+    for key in dic:
+        idx = key[1] - leftw
+        res[idx] = res[idx] + dic[key]
+    
+    return res
+
+    
+
+
