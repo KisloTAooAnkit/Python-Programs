@@ -3,12 +3,13 @@ from collections import deque
 class Node:
     def __init__(self,val) -> None:
         self.val = val
+        self.data = val
         self.left = None
         self.right = None
 
 
 def buildTree(s):
-
+    
     if len(s) == 0  or s[0] == "null":
         return None
     ip = s
