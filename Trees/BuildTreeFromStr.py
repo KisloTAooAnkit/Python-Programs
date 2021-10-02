@@ -6,6 +6,7 @@ class Node:
         self.data = val
         self.left = None
         self.right = None
+        self.data = val
 
 
 def buildTree(s):
