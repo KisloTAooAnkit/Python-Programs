@@ -14,7 +14,9 @@ def helper(root) -> Item:
     left = helper(root)
     right = helper(root)
 
+    #hamne root ko chori kiya
     withRob = root.val + left.withoutRob + right.withoutRob
+    #hamne root ko ignore kia
     withoutRob = max(left.withRob,left.withoutRob) + max(right.withRob,right.withoutRob)
 
     return Item(withRob,withoutRob)
