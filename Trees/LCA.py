@@ -51,10 +51,10 @@ class Solution:
     def lowestCommonAncestor(self, root, p, q):
         ans = self.findLCASpaceOpt(root,p,q)
         return ans.val
-p =5
-q = 1
-null = "null"
-a = [3,5,1,6,2,0,8,null,7,4]
+p =4
+q = 3
+null = n = "null"
+a = [5,4,6,3,n,n,7]
 
 root = BuildTreeFromStr.buildTree(a)
 PrintTree.print2D(root)
