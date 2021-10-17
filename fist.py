@@ -1,34 +1,27 @@
-
-
-def minMoves(string):
-    lst = list(string)
-    start = 0
-    end = 0
-    xcount = 0
-    ans = 0
-    n = len(lst)
+import sys
+def solution(students,seats):
+    students.sort()
+    seats.sort()
     dic = dict()
-    lastx = -1
-    while(end<n):
-        if lst[end] == "X":
-            xcount+=1
-
+    for i in seats:
+        if i not in dic:
+            dic[i] = 1
+    ans = 0
+    for idx,val in enumerate(students):
+        minx = sys.maxsize
+        idx = -1
+        for key in dic:
+            if dic[key]>-1:    
+                if abs(val-key) < minx:
+                    idx = key
+                    minx = abs(val-key)
         
-        windowS = end - start +1
-        if windowS == 3:
-            if lst[start] == "X":
-                ans +=1
-                for i in range(start,end+1):
-                    if lst[i] == "X":
-                        xcount -=1
-                    lst[i] = "0"
-
-            start +=1
-        end +=1
-    if xcount>0:
-        ans +=1
+        if idx != -1:
+            dic[idx] = -1
+            ans += minx
     return ans
 
+sts =[2,2,6,6]
+students =[1,3,2,6]
 
-s = "X0X0X0X"
-print(minMoves(s))
+print(solution(students,sts))    
