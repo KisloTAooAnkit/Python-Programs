@@ -1,0 +1,56 @@
+{
+    "tutName" : "Remove Outer Cowling",
+    "walkthroughSteps" : [
+        {
+            "heading" : "Remove Left Clip",
+            "triggerName" : "RemoveLeftClip",
+            "description" : "Remove left side clip to unlock"
+        },
+        {
+            "heading" : "Remove Left Clip",
+            "triggerName" : "RemoveRightClip",
+            "description" : "Remove right side clip to unlock"
+        },
+        {
+            "heading" : "Remove Back Clip",
+            "triggerName" : "RemoveBackClip",
+            "description" : "Remove back side clip to unlock"
+        },
+        {
+            "heading" : "Remove Top Cowling",
+            "triggerName" : "RemoveTop",
+            "description" : ""
+        },
+        {
+            "heading" : "Remove Right Screws",
+            "triggerName" : "RemoveRightScrews",
+            "description" : ""
+        },        
+        {
+            "heading" : "Remove Left Screws",
+            "triggerName" : "RemoveLeftScrews",
+            "description" : ""
+        },        
+        {
+            "heading" : "Remove Front Panel",
+            "triggerName" : "RemoveFrontPanel",
+            "description" : ""
+        },        
+        {
+            "heading" : "Remove Rubber Lining",
+            "triggerName" : "RemoveRubberLining",
+            "description" : ""
+        },
+        {
+            "heading" : "Remove Left Cowling",
+            "triggerName" : "RemoveLeftCowling",
+            "description" : ""
+        },
+        {
+            "heading" : "Remove Right Cowling",
+            "triggerName" : "RemoveRightCowling",
+            "description" : ""
+        }
+    ]
+
+}
