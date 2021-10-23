@@ -1,13 +1,14 @@
 import heapq
 
 class Item:
-    
     def __init__(self,word,freq) -> None:
         self.word = word
         self.freq = freq
     
     def __lt__(self,other):
         if self.freq == other.freq:
+            #YEHA PE HAM ULTA RETURN KARHE HAI KYUNKI MIN HEAP SE HAM JAB FINAL ANS POP KARENGE TOH ASC 
+            #ORDER MEIN MILEGA AUR USE HAME REVERSE KARNA HOGA(DSC ORDER KE LIYE) IS WAJAH SE CONDITION ULTI HAI
             return self.word > other.word
         return self.freq < other.freq
    
