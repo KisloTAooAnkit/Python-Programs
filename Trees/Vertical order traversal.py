@@ -81,7 +81,7 @@ def BFS(node):
         if pair in dic:
             dic[pair].append(item.node.val)
         else:
-            dic[pair] = item.node.val
+            dic[pair] = [item.node.val]
 
         if item.node.left:
             x = pair[0] + 1
