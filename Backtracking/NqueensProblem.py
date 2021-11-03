@@ -32,6 +32,7 @@ def prepareAns(matrix,ans):
     print(ls)
     ans.append(ls)
     print("----------------")
+    
 def NQueensHelper(row,matrix,n,ans):
     if row == n:
         prepareAns(matrix,ans)

@@ -41,13 +41,14 @@ def isSafe(grid,row,col,num):
 
 def solveSudoku(grid):
     row,col = [0],[0]
-    if not hasEmptyLocation(grid,row,col):
+    # find empty slot if no empty slot present in board then we have ans
+    if not hasEmptyLocation(grid,row,col): 
         return True
-    
+    #hit and try for every number to place in that slot 
     for i in range(1,10):
         if isSafe(grid,row,col,i):
             grid[row[0]][col[0]] = 1
             if(solveSudoku(grid)):
-                return True
+                return True #early return as we have to stop even if we get even 1 ans
             grid[row[0]][col[0]] = 0
     return False
