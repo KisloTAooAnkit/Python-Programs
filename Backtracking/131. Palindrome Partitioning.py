@@ -9,7 +9,7 @@ def isArrPalindrome(arr):
 def helper(s,arr,ans):
     if len(s) == 0:
         if isArrPalindrome(arr):
-            ans.append(arr)
+            ans.append(arr[:])
         return
     
     n = len(s)
@@ -27,5 +27,5 @@ def partition(s):
     ans = []
     helper(s,[],ans)
     return ans
-s = "aab"
+s = "aaabccc"
 print(partition(s))
