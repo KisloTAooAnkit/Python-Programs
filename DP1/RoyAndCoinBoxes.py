@@ -13,6 +13,7 @@ def solution():
         if i==0:
             continue
         boxes[i] = boxes[i-1] + boxes[i]
+
     n = max(boxes)
     dp = [0]*(n+2)
     for i in boxes:
@@ -29,8 +30,7 @@ def solution():
         x = int(input())
         if x > n:
             print(0)
-            qryCount-=1
-            continue
-        print(dp[x])
+        else:
+            print(dp[x])
         qryCount-=1
 solution()
