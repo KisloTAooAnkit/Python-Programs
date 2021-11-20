@@ -1,12 +1,20 @@
 import sys
-def kadanesModified(arr,k):
-    globalmax = -sys.maxsize
-    runningSum = -sys.maxsize
-    for i in range(0,len(arr)):
-        runningSum = max(arr[i]+runningSum,arr[i])
-        if globalmax < runningSum <=k:
-            globalmax = runningSum
-    return globalmax
+import bisect
+
+
+def slidingWindow(arr,k,n):
+    dp = dict()
+    dp[0] = 1
+    prevSum = 0
+    ans = -sys.maxsize
+    for i in range(n):
+        prefixSumTillNow = prevSum + arr[i]
+        redundantSum = prefixSumTillNow - k
+        start = redundantSum
+        end = prefixSumTillNow
+        pass               
+
+
         
 
 def maximalAreaRectDP(matrix,k):
@@ -16,23 +24,14 @@ def maximalAreaRectDP(matrix,k):
     ans = -sys.maxsize
     for point1 in range(cols):
         for row in range(rows):
-            dp[row] = matrix[row][point1] 
-        
+            dp[row] = 0
         for point2 in range(point1,cols):
-            if point1 == point2:
-                ans = max(ans,kadanesModified(dp,k))
-                continue
             for row in range(rows):
                  dp[row] += matrix[row][point2]
             
-            ans = max(ans,kadanesModified(dp,k))
+            ans = max(ans,slidingWindow(dp,k,rows))
     return ans 
                 
-grid =[
-    [5,-4,-3,4],
-    [-3,-4,4,5],
-    [5,1,5,-4]
-       ]
-
-k = 8
+grid =[[2,2,-1]]
+k = 0
 print(maximalAreaRectDP(grid,k))
