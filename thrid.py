@@ -1,19 +1,18 @@
-import heapq
-import math
-def solution(b,a):
-    for i,val in enumerate(a):
-        a[i] = -val
-    heapq.heapify(a)
+#arr = [1,2,4,4,55]
+# n= 5
+def maxDistance(arr):
+    n = len(arr)
+    i = 0
     ans = 0
-    while b > 0:
-        val = heapq.heappop(a)
-        ans += (val*-1)
-        heapq.heappush(a,-math.floor((val*-1)/2))
-        b-=1
+    while(i<n):  
+        if arr[0] != arr[n-1]:
+            return n-1
+        elif arr[0] != arr[i]:
+            ans +=1 
+        elif arr[0] == arr[i]:
+            ans+=1
+        i+=1
     return ans
-
-
-a =10
-b = [ 2147483647, 2000000014, 2147483647 ]
-
-print(solution(a,b))
+    
+arr = [1,1,1,6,1,1,1]
+print(maxDistance(arr))
