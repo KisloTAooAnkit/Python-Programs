@@ -1,7 +1,7 @@
 10
 4 1 2 3 4
 
-list(map(int,input().strip().split()))
+arr = list(map(int,input().strip().split()))
 
 matrix = []
 for i in range(row):
