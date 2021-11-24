@@ -30,13 +30,13 @@ def dphelper(word1,word2,m,n,s1,s2,dp):
         return dp[m][n]
     else:
         #rem
-        ans2 = 1 + dphelper(word1,word2,m-1,n,s1+1,s2,dp)
+        removeOperation = 1 + dphelper(word1,word2,m-1,n,s1+1,s2,dp)
         #repl
-        ans3 = 1 + dphelper(word1,word2,m-1,n-1,s1+1,s2+1,dp)
+        replaceOperation = 1 + dphelper(word1,word2,m-1,n-1,s1+1,s2+1,dp)
         #ins
-        ans1 = 1 + dphelper(word1,word2,m,n-1,s1,s2+1,dp)
+        insertOperation = 1 + dphelper(word1,word2,m,n-1,s1,s2+1,dp)
         
-        dp[m][n] = min(ans1,ans2,ans3)
+        dp[m][n] = min(insertOperation,removeOperation,replaceOperation)
         return dp[m][n]
 
 def editDistanceDpRecursive(word1,word2):
