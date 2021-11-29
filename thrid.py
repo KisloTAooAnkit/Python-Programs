@@ -1,15 +1,27 @@
-def maxSq(n,m,matrix):
-    dp = [[0 for _ in range(m)] for _ in range(n)]
+from collections import deque
+from collections import defaultdict
+def sol(n,meetings,firstPerson):
+    dic = defaultdict(list)
+    for meeting in meetings:
+        x,y,_ = meeting
+        dic[x].append(y)
+        dic[y].append(x)
+    q = deque()
+    q.append(firstPerson)
+    ans = [0]
+    hashmap = dict()
+    while q:
+        person = q.pop()
+        hashmap[person] = 1
+        for i in dic[person]:
+            if i not in hashmap:
+                q.append(i)
+        if person != 0:
+            ans.append(person)
+    return ans
 
-    for i in range(m):
-        if matrix[0][i] == 1:
-            dp[0][i] = 1
-    for j in range(n):
-        if matrix[j][0] == 1:
-            dp[j][0] = 1
+arr =  [[3,4,2],[1,2,1],[2,3,1]]
+firstPerson = 1
+print(sol(len(arr),arr,firstPerson))
 
-    for i in range(1,n):
-        for j in range(1,m):
-            if matrix[i][j] == 1:
-                dp[i] = min(dp[i][j-1],dp[i-1][j-1],dp[i-1][j]) + 1
-    return dp[n-1][m-1]
+        

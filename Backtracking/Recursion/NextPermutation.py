@@ -27,7 +27,6 @@ def nextPerm(arr):
         arr[i],arr[j] = arr[j],arr[i]
         i+=1
         j-=1
-
     return  
         
 
