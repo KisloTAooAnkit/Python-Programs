@@ -1,35 +1,30 @@
-def sol(string):
-    lst = list(string)
+def angryChildren(arr,k):
+    arr.sort()
+    n = len(arr)
+    runningSum = 0
+    diffOfWindow = 0
+    for end in range(k):
+        diffOfWindow += end*arr[end] - runningSum
+        runningSum += arr[end]
+    
+    flag  = True
     start = 0
-    end = 0
-    xcount = 0
-    ans = 0
-    n = len(lst)
-    dic = dict()
-    lastx = -1
+    ans = float("inf")
     while(end<n):
-        if lst[end] == "X":
-            xcount+=1
+        if not flag:
+            runningSum += arr[end]
+            diffOfWindow += (end-start +1)*arr[end] - runningSum
 
-        
-        windowS = end - start +1
-        if windowS == 3:
-            if lst[start] == "X":
-                ans +=1
-                for i in range(start,end+1):
-                    if lst[i] == "X":
-                        xcount -=1
-                    lst[i] = "0"
-
+        while(end-start+1 == k or flag):
+            ans = min(diffOfWindow,ans)
+            diffOfWindow -= runningSum - k*arr[start]
+            runningSum -= arr[start]
             start +=1
+            flag = False
         end +=1
-    if xcount>0:
-        ans +=1
+
     return ans
-
-
-s = "XXX"
-print(sol(s))
-
-
-
+            
+arr = [10,100,300,200,1000,20,30]
+k = 3
+print(angryChildren(arr,k))
