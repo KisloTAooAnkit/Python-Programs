@@ -8,6 +8,7 @@ class Trie:
     def __init__(self) -> None:
         self.root  = TrieNode("")
 
+    """Insert Word"""
     def __insertWordHelper(self,root,word):
         if len(word) == 0:
             root.isTerminal = True
@@ -25,9 +26,8 @@ class Trie:
     def insertWord(self,word):
         self.__insertWordHelper(self.root,word)
         
-        
+    """Search Word"""
     def __searchWordHelper(self,root,word):
-            
         if len(word) == 0:
             if not root.isTerminal:
                 return False
@@ -44,10 +44,36 @@ class Trie:
     
     def searchWord(self,word):
         return self.__searchWordHelper(self.root,word)
+ 
+    """Remove Word"""
+    def __removeWordHelper(self,root,word):
+        if len(word) == 0:
+            root.isTerminal = False
+            return
+        
+        idx = ord(word[0]) - 97
+        child = None
+        if root.children[idx]:
+            child = root.children[idx]
+        else:
+            return    
+        self.__removeWordHelper(child,word[1:])
 
+        if not child.isTerminal:
+            for i,val in enumerate(child.children):
+                if child.children[i]:
+                    #koi aur word bhi use karha hai hence we cant delete it 
+                    return
+            del child
+            root.children[idx] = None
+
+    def removeWord(self,word):
+        self.__removeWordHelper(self.root,word)
 
 trie = Trie()
 trie.insertWord("abc")
 trie.insertWord("abd")
 trie.insertWord("abe")
-print(trie.searchWord("ab"))
+print(trie.searchWord("abc"))
+trie.removeWord("abc")
+print(trie.searchWord("abc"))

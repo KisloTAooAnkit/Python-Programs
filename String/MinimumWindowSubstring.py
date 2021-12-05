@@ -46,8 +46,8 @@ def minWindowSubstring(s,t):
 s = "ADOBECODEBANC" 
 t = "ABC"
 
-s="aa" 
-t="aa"
+# s="aa" 
+# t="aa"
 
 
 print(minWindowSubstring(s,t))
