@@ -1,26 +1,17 @@
-import Trees.BuildTreeFromStr
-def helper(ans,root):
-    if not root:
-        return 0
 
-    left = helper(ans,root.left)
-    right = helper(ans,root.right)
-
-    arcsum = root.val + left + right
-    leftarcsum = root.val + left
-    rightarcSum = root.val + right
-    ans[0] = max(ans[0],arcsum,leftarcsum,rightarcSum,root.val)
-    return max(leftarcsum,rightarcSum,root.val)
-
-
-
-def maxPath(root):
-    ans = [-1001]
-    res = helper(ans,root)
-    ans[0] = max(ans[0],res)
+def sol(logs,n):
+    stack = []
+    ans = [0]*n
+    lastExeTime = -1
+    for log in logs:
+        id,action,time = log.split(":")
+        if action == "start":
+            if stack:
+                ans[-1] += int(time) - lastExeTime
+            stack.append([int(id)])
+            
     return ans
 
-
-arr = [1,2,3]
-root = Trees.BuildTreeFromStr.buildTree(arr)
-print(maxPath(root))
+n = 1
+logs = ["0:start:0","0:start:2","0:end:5","0:start:6","0:end:6","0:end:7"]
+print(sol(logs,n))
