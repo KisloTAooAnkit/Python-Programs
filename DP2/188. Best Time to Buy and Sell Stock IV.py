@@ -16,6 +16,3 @@ def maxProfit(k,prices):
             k-=1
         i+=1
     return ans + previousProfit 
-        
-        
-        
