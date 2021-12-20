@@ -1,22 +1,30 @@
-def ans(digits):
-    ans = set()
-    n = len(digits)
+
+from bisect import bisect_left
+
+def sol(arr1,arr2):
+    n = len(arr1)
+    ans = 0
     for i in range(n):
-        val = 0
-        val = digits[i]*100
-        for j in range(n):
-            if j == i:
-                continue
-            val1 = digits[j]*10
-            for k in range(n):
-                if k ==j:
-                    continue
-                val2 = digits[k]
-                newVal = val + val1 + val2
-                if newVal%2==0 and newVal>=100:
-                    ans.add(newVal)
-    l = list(ans)
-    l.sort()
-    return l
-di = [2,1,3,0]
-print(ans(di))
+        ans += abs(arr1[i] - arr2[i])
+    res = arr1[:]
+    arr1.sort()
+    temp = ans
+    for i in range(n):
+        idx = bisect_left(arr1,arr2[i])
+        prev = idx-1
+        nxt = idx +1
+        val = float("inf")
+        if prev >-1:
+            val = min(val,abs(arr1[prev]-arr2[i]))
+        if nxt < n:
+            val = min(val,abs(arr1[nxt]-arr2[i]))
+        val = min(val,abs(arr1[idx]-arr2[i]))
+        
+        val = val - abs(res[i]-arr2[i])
+        temp = min(temp,ans+val)
+    return temp            
+    
+n1 = [1,10,4,4,2,7]
+n2 = [9,3,5,1,7,4]
+
+print(sol(n1,n2))

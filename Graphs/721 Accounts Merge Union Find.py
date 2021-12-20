@@ -1,62 +1,56 @@
 from collections import defaultdict
-
-def getParent(node,parent):
-    if node == parent[node]:
+def findSuperParent(node,parent):
+    if parent[node] == node:
         return node
-    return getParent(parent[node],parent)
+    p = findSuperParent(parent[node],parent)
+    parent[node] = p
+    return p
 
-def unionFind(node1,node2,parent):
-    parent1 = getParent(node1,parent)
-    parent[node2] = parent1
-    return parent1
-
-def sol(accounts):
-    n = len(accounts)
-    parent = [i for i in range(n)]
-    email_ParentMap = defaultdict(int)
-    for currparent,account in enumerate(accounts):
-        cache = currparent
-        for idx,email in enumerate(account):
-            if idx ==0:
-                continue
-            if email not in email_ParentMap:
-                email_ParentMap[email] = cache
-            else:
-                #union find and update parent array
-                otherParentWithSameEmail = email_ParentMap[email]
-                cache = unionFind(otherParentWithSameEmail,currparent,parent)
-    
-    #process Parent array:
-    ans = []
-    n = 0
-    emailVisited = defaultdict(int)
-    for currparent,account in enumerate(accounts):
-        rootParent = parent[currparent]
-        emails = account[1:]
-        emails.sort()
-        
-        if n<=rootParent:
-            ans.append([account[0]]+emails)
-            for idx,email in enumerate(emails):
-                if email not in emailVisited:
-                    emailVisited[email] = 1
-            n+=1
+def findUnion(node1,node2,rank,parent):
+    s1 = findSuperParent(node1,parent)
+    s2 = findSuperParent(node2,parent)
+    if s1 != s2:
+        if rank[s1]>rank[s2]:
+            parent[s2] = s1
+            rank[s1] += rank[s2]
+            rank[s2] = 0
+            return s1
         else:
-            for idx,email in enumerate(emails):
-                if email not in emailVisited:
-                    ans[rootParent].append(email)
-                    emailVisited[email] = 1
+            parent[s1] = s2
+            rank[s2] += rank[s1]
+            rank[s1] = 0
+            return s2
+    return s1
+            
+def solution(accounts):
+    n = len(accounts)
+    emailToId = defaultdict(int)
+    parent = [i for i in range(n)]
+    rank = [1]*n
+    for id,account in enumerate(accounts):
+        for email in account[1:]:
+            if email not in emailToId:
+                emailToId[email] = id
+            else:
+                oldGroup = emailToId[email]
+                findUnion(id,oldGroup,rank,parent)
+    
+    IdToEmail = defaultdict(set)
+    for email,id in emailToId.items():
+        superParent = findSuperParent(id,parent)
+        IdToEmail[superParent].add(email)
+    ans = []
+    for id in IdToEmail:
+        emailList = sorted(list(IdToEmail[id]))                
+        ans.append( [accounts[id][0]] + emailList)
     return ans
-    
-                
-    
 
+accounts = [["Gabe","Gabe0@m.co","Gabe3@m.co","Gabe1@m.co"],
+            ["Kevin","Kevin3@m.co","Kevin5@m.co","Kevin0@m.co"],
+            ["Ethan","Ethan5@m.co","Ethan4@m.co","Ethan0@m.co"],
+            ["Hanzo","Hanzo3@m.co","Hanzo1@m.co","Hanzo0@m.co"],
+            ["Fern","Fern5@m.co","Fern1@m.co","Fern0@m.co"]]
 
-accounts = [
-    ["John","johnsmith@mail.com","john_newyork@mail.com"],
-    ["John","john00@mail.com","johnsmith@mail.com"],
-    ["Mary","mary@mail.com"],
-    ["John","johnnybravo@mail.com"]
-    ]
-
-print(sol(accounts))
+ans = solution(accounts)
+for account in ans:
+    print(account)
