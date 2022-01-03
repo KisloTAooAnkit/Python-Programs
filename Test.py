@@ -1,37 +1,54 @@
-def solution(s):
-    a ,count1 =[], 100000
-    b ,count2 =[], 100000
-
+def solve(s,k):
+    s = list(s)
     n = len(s)
-    balance = 0
-    for i in range(n):
-        if s[i] == "(":
-            balance +=1
-        elif s[i] == ")":
-            balance -=1
-            
-        a.append(s[i])
-
-        if balance <0:
-            count1 -=1
-            a[-1] = ""
+    odd = n%2 != 0
+    unpair = 0
+    left = n//2  - 1 if not odd else n//2
+    right = n//2 
+    while(left >=0 and right <n):
+        if s[left] != s[right]:
+            unpair +=1
+        left -=1
+        right +=1
     
-    balance = 0
-
-    for i in range(n-1,-1,-1):
-        if s[i] == ")":
-            balance +=1
-        elif s[i] == "(":
-            balance -=1
-            
-        b.append(s[i])
-
-        if balance <0:
-            count2 -=1
-            b[-1] = ""
     
-    return "".join(a) if count1 > count2 else "".join(reversed(b))
+    left ,right =0, n-1
 
-s =  "a)b(c)d"
-print(solution(s))
+    while(left<=right):
+        if unpair > k:
+            return -1
+
+        if s[left] == s[right]:
+            if left == right and k > 0:
+                s[left] = "9"
+
+            elif s[left] != "9" and k-2 >= unpair:
+                s[left] = "9"
+                s[right] = "9"
+                k-=2
+
+        elif k-2 >= unpair - 1:
+            s[left] = "9"
+            s[right] = "9"
+            unpair -=1
+            k-=2
+        
+        else:
+            if s[left] < s[right]:
+                s[left] = s[right]
+            else:
+                s[right] = s[left]
+            unpair -=1
+            k-=1
+
+        left +=1
+        right -=1
+    
+    return "".join(s)
+
+
+s = "0011"
+k = 1
+print(solve(s,k))
+
     

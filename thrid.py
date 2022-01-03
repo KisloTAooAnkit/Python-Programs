@@ -1,46 +1,30 @@
-class MinStack:
+def maxProductSubarray(arr):
+    n = len(arr)
+    pos = [0]*n
+    neg = [0]*n
+    pl = [1]*n
+    nl = [1]*n
 
-    def __init__(self):
-        self.stack = []
-        self.minElement = float("-inf")
-        self.n = 0
+    pos[0],neg[0] = arr[0],arr[0]
+    for i in range(1,n):
+        val = arr[i]
+        if val < 0:
+            pp = neg[i-1]*val 
+            np = pos[i-1]*val
+            pp = max(neg[i-1]*val,val)
+            np = min(pos[i-1]*val,val)
+            pos[i] = pp
+            neg[i] = np
+        if val >0:
+            pp = max(pos[i-1]*val,val)
+            np = min(neg[i-1]*val,val)
+            pos[i] = pp
+            neg[i] = np
+        if val == 0:
+            pos[i] = 0
+            neg[i] = 0
+    return max(max(pos),max(neg))
 
-    def push(self, val: int) -> None:
-        if self.n == 0:
-            self.minElement = val
-            self.n+=1
-            self.stack.append(val)
-            return
+arr = [-2,0,-1]
 
-        if val < self.minElement:
-            self.stack.append(2*val - self.minElement)
-            self.minElement = val
-        else:
-            self.stack.append(val)
-        self.n +=1
-    def pop(self) -> None:
-
-        if self.n == 1:
-            self.minElement = float("inf")
-            val = self.stack.pop()
-            self.n-=1
-            return val
-
-        elif self.stack[-1] < self.minElement:
-            val = self.minElement
-            self.minElement = 2*self.minElement - self.stack[-1]
-            self.stack.pop()
-            self.n-=1
-            return val
-        else:
-            self.n-=1
-            return self.stack.pop()
-
-    def top(self) -> int:
-        if self.stack[-1] <= self.minElement:
-            return self.minElement
-        return self.stack[-1]
-
-    def getMin(self) -> int:
-        return self.minElement
-
+print(maxProductSubarray(arr))
