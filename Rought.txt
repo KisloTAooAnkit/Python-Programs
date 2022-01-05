@@ -26,3 +26,19 @@ _____________________________________
 [4 10 15 24 26]
 [0 9 12 20]
 [5 18 22 30]
+
+
+suppose at current state i have 2 choices 
+so i can choose from start , from end 
+and i also monitor a total variable ==> sum of array at current state
+
+now i can ask for my smaller recursive call (which would be b's turn) 
+from total sum given to you(deducting the arr[i] or arr[j] at current recursive state) what is the maximum you are taking ?
+
+therefore my recursive call becomes
+start = arr[i] + total - arr[i] - dfs(i+1,j,total-arr[i])
+end = arr[j] + total - arr[j] - dfs(i,j-1,total-arr[j])
+return max(start,end)
+
+
+base case would be i==j return arr[i]
