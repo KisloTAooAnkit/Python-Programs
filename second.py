@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 def solve(arr):
     i = 0
     ans = 0
@@ -31,3 +32,5 @@ def solve(arr):
 
         
 
+=======
+>>>>>>> Stashed changes

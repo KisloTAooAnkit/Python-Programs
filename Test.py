@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #-444444
 #+-3333
 #   +2222
@@ -54,3 +55,31 @@ def solve(str: str) -> int:
 s ="+2333-2147483646"
 x = -1
 print(solve(s))
+=======
+from typing import Counter
+
+
+def solve(arr,x):
+    arr = [str(i) for i in arr]
+    x = str(x)
+    n = len(arr)
+    if n==1:
+        return 0    
+    dic  = Counter(arr)
+    ans = 0
+    m = len(x)
+    for i in range(0,m-1):
+        left = x[:i+1]
+        right = x[i+1:]
+        if left == right:
+            if right in dic:
+                ans+= (dic[right] * (dic[right]-1))
+        else:
+            if right in dic and left in dic:
+                ans += dic[right] * dic[left]
+    return ans        
+
+arr = [110,11,11]
+x = 11011
+print(solve(arr,x))
+>>>>>>> Stashed changes
