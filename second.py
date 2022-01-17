@@ -1,13 +1,33 @@
-def solve(mass,arr):
-    arr.sort()
+def solve(arr):
+    i = 0
+    ans = 0
     n = len(arr)
-    for i in range(n):
-        if mass >= arr[i]:
-            mass+=arr[i]
-        else:
-            return False
-    return True
+    while(i<n):
+        peak = i
+        start = i
+        while(i+1<n and arr[i] < arr[i+1]):
+            i+=1
 
-mass = 5
-asteroids =[4,9,23,4]
-print(solve(mass,asteroids))
+        haveWeClimbedAnyStep = start < i
+
+        if haveWeClimbedAnyStep:
+            peak = i
+        else:
+            i+=1
+            continue
+        
+        while(i+1<n and arr[i]>arr[i+1]):
+            i+=1
+        
+        haveWeGotDownAnyStep = i > peak
+
+        if haveWeGotDownAnyStep:
+            end = i
+        else:
+            i+=1
+            continue
+        
+        ans = max(ans,end-start+1)
+
+        
+

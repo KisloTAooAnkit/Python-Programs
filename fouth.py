@@ -1,56 +1,21 @@
-def calcMaxArea(arr,n):
-    ans = 0
-    #NSR
-    stack = []
-    temp = [0]*n
-    for i in range(n):
-        while(stack and arr[stack[-1]]>arr[i]):
-            idx = stack.pop()
-            temp[idx] = abs(i-idx)
-        stack.append(i)
-    while stack:
-        idx = stack.pop()
-        temp[idx] = n-idx
+def wordPattern(pattern: str, s: str) -> bool:    
+    arr = s.split(" ")
+    wordToPat = dict()
+    patternToWord = dict()
+    if len(pattern) != len(arr):
+        return False
+    for idx,word in enumerate(arr):
+        if pattern[idx] not in patternToWord:
+            if word in wordToPat:
+                return False
+            patternToWord[pattern[idx]] = word
+            wordToPat[word] = pattern[idx]
+        else:
+            if patternToWord[pattern[idx]] != word:
+                return False
+    return True 
 
-    #NSL
-    for i in range(n-1,-1,-1):
-        while(stack and arr[stack[-1]]>arr[i]):
-            idx = stack.pop()
-            temp[idx] += abs(i-idx) -1
-        stack.append(i)
-    
-    while stack:
-        idx = stack.pop()
-        temp[idx] += abs(0-idx)
-    
-    for i in range(n):
-        ans = max(
-            ans,
-            temp[i]*arr[i]
-        )
-    return ans
 
-def maximalRect(grid):
-    n = len(grid)
-    
-    rows = len(grid)
-    cols = len(grid[0])
-    temp = [0]*cols
-    ans = 0
-    for i in range(0,rows):
-        for col in range(cols):
-            if grid[i][col] == "0":
-                temp[col] = 0
-            else:
-                temp[col] +=1
-
-        ans = max(ans,calcMaxArea(temp,cols))
-    return ans
-
-matrix = [
-    ["1","0","1","0","0"],
-    ["1","0","1","1","1"],
-    ["1","1","1","1","1"],
-    ["1","0","0","1","0"]
-    ]
-print(maximalRect(grid=matrix))
+pattern = "abba"
+s = "dog dog dog dog"
+print(wordPattern(pattern,s))
