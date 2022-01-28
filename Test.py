@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 
 
@@ -36,3 +37,5 @@ def solve(n):
 
 n = 4
 print(solve(n))
+=======
+>>>>>>> Stashed changes
