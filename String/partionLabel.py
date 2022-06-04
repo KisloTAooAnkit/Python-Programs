@@ -20,19 +20,4 @@ def partitionLabels(s):
 
 s = "ababcbacadefegdehijhklij"
 print(partitionLabels(s))
-
-
-def dfs(node,dic):
-    if node in dic:
-        return dic[node]
-
-    nnode = Node(node.val)
-    res = []
-    for nbr in node.neighbors:
-        nnbr = dfs(nbr,dic)
-        res.append(nnbr)
-    
-    nnode.neighbors = res
-    return nnode
-
-
+        

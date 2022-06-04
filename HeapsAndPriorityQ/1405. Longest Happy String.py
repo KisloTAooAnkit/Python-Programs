@@ -27,14 +27,11 @@ def longestHappyString(a,b,c):
         ans.append(letter)
         count +=1
         cd +=1
-        if qlen>0:    
-            qlen-=1
+        if cooldownQ:    
             heapq.heappush(pq,cooldownQ.popleft())
         if count < 0:
             if cd == 2:
-                
                 cooldownQ.append((count,(letter,0)))
-                qlen+=1
             else:
                 heapq.heappush(pq,(count,(letter,cd)))
 
